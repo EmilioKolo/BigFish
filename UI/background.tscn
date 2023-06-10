@@ -40,14 +40,6 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_wefal")
 centered = false
 
-[node name="spritetop1" type="VisibleOnScreenNotifier2D" parent="terrain1/Sprite2D"]
-position = Vector2(2090, 80)
-scale = Vector2(209, 2.5)
-
-[node name="spritebot1" type="VisibleOnScreenNotifier2D" parent="terrain1/Sprite2D"]
-position = Vector2(2105, 1420)
-scale = Vector2(210.5, 2)
-
 [node name="terrain2" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.375, 0.5)
 motion_mirroring = Vector2(1671, 1200)
@@ -59,14 +51,6 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_jx5ck")
 centered = false
 
-[node name="spritetop2" type="VisibleOnScreenNotifier2D" parent="terrain2/Sprite2D"]
-position = Vector2(2080, 39.9999)
-scale = Vector2(209, 2.5)
-
-[node name="spritebot2" type="VisibleOnScreenNotifier2D" parent="terrain2/Sprite2D"]
-position = Vector2(2100, 1420)
-scale = Vector2(210, 2)
-
 [node name="terrain3" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.25, 0.5)
 motion_mirroring = Vector2(1671, 1200)
@@ -77,18 +61,3 @@ position = Vector2(0, 720)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_huv2e")
 centered = false
-
-[node name="spritetop3" type="VisibleOnScreenNotifier2D" parent="terrain3/Sprite2D"]
-position = Vector2(2080, 120)
-scale = Vector2(209, 2.5)
-
-[node name="spritebot3" type="VisibleOnScreenNotifier2D" parent="terrain3/Sprite2D"]
-position = Vector2(2100, 1420)
-scale = Vector2(210, 2.00001)
-
-[connection signal="screen_entered" from="terrain1/Sprite2D/spritetop1" to="." method="_on_spritetop_1_screen_entered"]
-[connection signal="screen_entered" from="terrain1/Sprite2D/spritebot1" to="." method="_on_spritebot_1_screen_entered"]
-[connection signal="screen_entered" from="terrain2/Sprite2D/spritetop2" to="." method="_on_spritetop_2_screen_entered"]
-[connection signal="screen_entered" from="terrain2/Sprite2D/spritebot2" to="." method="_on_spritebot_2_screen_entered"]
-[connection signal="screen_entered" from="terrain3/Sprite2D/spritetop3" to="." method="_on_spritetop_3_screen_entered"]
-[connection signal="screen_entered" from="terrain3/Sprite2D/spritebot3" to="." method="_on_spritebot_3_screen_entered"]

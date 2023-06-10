@@ -40,7 +40,7 @@ func update_size():
 	# Lo pongo en label
 	size_label.text = "TAMAÑO: " + str(Global.player_size); 
 	var size_tween = get_tree().create_tween(); 
-	var newsize = Vector2(Global.camera_scale, Global.camera_scale); 
+	var newsize = Vector2(max(1,Global.camera_scale), max(1,Global.camera_scale)); 
 	size_tween.tween_property(bg_node, "scale", newsize, Global.zoom_tweentime); 
 
 

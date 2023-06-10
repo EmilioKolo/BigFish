@@ -1,11 +1,6 @@
 extends ParallaxBackground
 
 
-### FALTA
-# Agregar clamp con minimo a 1 para scale de fondo
-# Ver como eliminar borde de abajo de sprites de fondo
-###
-
 # Variables de profundidad
 var profundidad = 10.0; 
 var prof_max = 1000; 
@@ -26,7 +21,6 @@ var x_mirror = 1671;
 @onready var terrain_node3 = get_node("terrain3"); 
 @onready var terrain_node3_sprite = get_node("terrain3/Sprite2D"); 
 
-
 # Defino senales
 signal act_prof(p)
 
@@ -40,8 +34,6 @@ func _process(delta):
 		color_profundidad(); 
 	# Muevo las cosas en parallax
 	scroll_base_offset -= parallax_speed * delta; 
-	# Bajo transparencia de sprites
-	#lower_modul(delta); 
 
 
 # Funcion para cambiar el color del fondo de acuerdo a la profundidad
@@ -60,50 +52,10 @@ func color_profundidad():
 func color_rango(c_top, c_bot, porc):
 	return Color(num_rango(c_top.r, c_bot.r, porc), num_rango(c_top.g, c_bot.g, porc), num_rango(c_top.b, c_bot.b, porc))
 
-# Funcion para bajar modul de todos los nodos terrain
-func lower_modul(delta):
-	# Primero agarro los modul de los 3 nodos
-	var t1_modul = terrain_node1_sprite.material.get_shader_parameter('modul'); 
-	var t2_modul = terrain_node2_sprite.material.get_shader_parameter('modul'); 
-	var t3_modul = terrain_node3_sprite.material.get_shader_parameter('modul'); 
-	# Defino velocidad de decremento de modul
-	var modul_decrease = delta*0.1; 
-	# Veo si cada uno es mayor a 0.0
-	if t1_modul > 0:
-		terrain_node1_sprite.material.set_shader_parameter('modul', t1_modul-modul_decrease); 
-	if t2_modul > 0:
-		terrain_node2_sprite.material.set_shader_parameter('modul', t2_modul-modul_decrease); 
-	if t3_modul > 0:
-		terrain_node3_sprite.material.set_shader_parameter('modul', t3_modul-modul_decrease); 
-
-
 # Funcion para interpolar entre dos numeros
 func num_rango(n_top, n_bot, porc):
 	# Pensado para n_top y n_bot entre 0.0 y 1.0
 	# Porc es valor porcentual entre 0.0 y 1.0
 	return ((n_top-n_bot)*porc)+n_bot
 
-
-func _on_spritetop_1_screen_entered():
-	terrain_node1_sprite.material.set_shader_parameter('modul', 1.0);
-
-
-func _on_spritebot_1_screen_entered():
-	pass
-
-
-func _on_spritetop_2_screen_entered():
-	terrain_node2_sprite.material.set_shader_parameter('modul', 1.0);
-
-
-func _on_spritebot_2_screen_entered():
-	pass 
-
-
-func _on_spritetop_3_screen_entered():
-	terrain_node3_sprite.material.set_shader_parameter('modul', 1.0);
-
-
-func _on_spritebot_3_screen_entered():
-	pass 
 
