@@ -3,6 +3,8 @@ extends Node
 # Tamano del player, afecta los demas personajes
 var base_player_size = 5.0; 
 var player_size = 5; 
+# Variables de player
+var player_max_hp = 4; 
 
 # Limites del mapa
 var viewport_limit_x = ProjectSettings.get_setting("display/window/size/viewport_width"); 

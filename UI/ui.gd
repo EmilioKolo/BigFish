@@ -8,11 +8,16 @@ var menu_res_path = "res://UI/menu.tscn";
 @onready var prof_label = get_node("HBoxContainer/VBoxContainer2/MarginContainer/profundidad"); 
 @onready var size_label = get_node("HBoxContainer/VBoxContainer2/MarginContainer2/tamano"); 
 @onready var bg_node = get_node("Background"); 
+@onready var hp_display_node = get_node("HBoxContainer/VBoxContainer3/CenterContainer/health_display"); 
 
 # Defino senales
 signal exit_game
 signal change_prof(p)
 
+
+# Funcion para ejecutar al terminar de crear UI
+func _ready():
+	update_health(Global.player_max_hp); 
 
 # Funcion para ver input todos los frames
 func _input(_event):
@@ -26,6 +31,25 @@ func open_menu():
 	### TEMPORAL
 	# Emito la senal de cerrar el juego
 	exit_game.emit(); 
+
+# Funcion para actualizar la vida del personaje
+func update_health(h):
+	# Defino la fraccion de hp
+	var hp_fraction = float(h)/float(Global.player_max_hp); 
+	# Veo si hp es 100%
+	if hp_fraction >= 1.0:
+		hp_display_node.frame = 4; 
+	# Veo si hp es mayor o igual que 2/3
+	elif hp_fraction >= 0.67:
+		hp_display_node.frame = 3; 
+	# Veo si hp es mayor o igual que 1/3
+	elif hp_fraction >= 0.33:
+		hp_display_node.frame = 2; 
+	# Veo si hp es mayor que 0
+	elif hp_fraction > 0:
+		hp_display_node.frame = 1; 
+	else:
+		hp_display_node.frame = 0; 
 
 # Funcion para actualizar la profundidad
 func update_prof(p):

@@ -1,7 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddnlyejeteb1"]
+[gd_scene load_steps=9 format=3 uid="uid://ddnlyejeteb1"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_jdf0o"]
 [ext_resource type="PackedScene" uid="uid://dqfm162buudoo" path="res://UI/background.tscn" id="2_u08uc"]
+[ext_resource type="Texture2D" uid="uid://sh7vlib68alf" path="res://UI/Tamano5.png" id="3_1m8py"]
+[ext_resource type="Texture2D" uid="uid://cgaiwgeo2yo5o" path="res://UI/Tamano4.png" id="4_1p1eg"]
+[ext_resource type="Texture2D" uid="uid://4uwqpj1fwe75" path="res://UI/Tamano3.png" id="5_j4nfi"]
+[ext_resource type="Texture2D" uid="uid://j4xwcmhfd3do" path="res://UI/Tamano2.png" id="6_4b5hd"]
+[ext_resource type="Texture2D" uid="uid://djplh47qs63il" path="res://UI/Tamano1.png" id="7_t325b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ukcen"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_t325b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4b5hd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_j4nfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1p1eg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1m8py")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_jdf0o")
@@ -15,6 +43,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+
+[node name="health_display" type="AnimatedSprite2D" parent="HBoxContainer/VBoxContainer3/CenterContainer"]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_ukcen")
+centered = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2

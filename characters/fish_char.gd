@@ -46,8 +46,8 @@ func idle_state(delta):
 	# Veo que global_position no pase Global.limit 
 	check_limit(); 
 	# Aumento velocity en base a speed y direction
-	velocity.x = direction[0]*char_speed*delta * Global.camera_scale; 
-	velocity.y = direction[1]*char_speed*delta * Global.camera_scale; 
+	velocity.x = direction[0]*char_speed*delta * char_size; 
+	velocity.y = direction[1]*char_speed*delta * char_size; 
 
 
 func _on_player_collision_body_entered(body):

@@ -46,11 +46,13 @@ func _ready():
 
 # Funcion para ver input todos los frames
 func _input(_event):
-	# Al apretar escape se cierra el juego
-	if Input.is_action_just_pressed("action"):
-		player_node.set_self_size(player_node.char_size-1); 
+	# Al apretar el boton de sonido se cambia el sonido entre muteado y sonido
 	if Input.is_action_just_pressed("sound"):
 		switch_music(); 
+	# Funcion para testeo con boton de action
+	if Input.is_action_just_pressed("action"):
+		#player_node.set_self_size(player_node.char_size-1); 
+		pass
 
 
 func spawn_fish(used_scene):
@@ -127,3 +129,7 @@ func _on_fish_spawn_timeout():
 
 func _on_ui_change_prof(p):
 	prof = p; 
+
+
+func _on_player_health_changed(h):
+	ui_node.update_health(h); 

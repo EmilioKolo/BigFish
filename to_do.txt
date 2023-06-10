@@ -1,17 +1,4 @@
 
-X Revisar que limit_x y limit_y se usen bien en spawn
-
-X Arreglar indicador de tamaño (rojo muy grande, verde comestible)
-
-X Hacer andar blinker en player
-
-X Agregar fondo con parallax
-	X Aumenta transparencia al subir hasta desaparecer
-	X Desaparece al llegar hasta arriba
-
-- Agregar vida al pez
-	- Sistema de vida con señales y display de label
-	- Usar imagenes UI
 
 - Pulir sistema de escala de peces
 	- Revisar que los peces tengan tamaño razonable
@@ -19,7 +6,23 @@ X Agregar fondo con parallax
 		- Agregar progresion de dificultad
 	~ Revisar que speed escale bien con scale
 
+- Agregar mas variedad de peces
+
+X Revisar que limit_x y limit_y se usen bien en spawn
+
+X Arreglar indicador de tamaño (rojo muy grande, verde comestible)
+
+X Hacer andar blinker en player
+
 X Agregar sonidos
 
-- Agregar mas peces
+X Agregar fondo con parallax
+	X Aumenta transparencia al subir hasta desaparecer
+	X Desaparece al llegar hasta arriba
+
+X Agregar vida al pez
+	X Sistema de vida con señales y display de label
+	X Usar imagenes UI
+
+
 

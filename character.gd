@@ -4,6 +4,7 @@ extends CharacterBody2D
 # Variables del personaje
 @export var char_size = 1; 
 @export var scale_mult = 1.0; 
+var health = 1; 
 var char_speed = 200; 
 var scale_dir = 1; 
 var direction = [0,0]; 

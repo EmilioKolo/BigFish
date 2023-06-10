@@ -22,6 +22,7 @@ var feed_cont = 0;
 # Senales que emite
 signal size_change
 signal player_dead
+signal health_changed(h)
 
 
 func _ready():
@@ -29,6 +30,8 @@ func _ready():
 	state = MOVING; 
 	# Seteo velocidad del player
 	char_speed = 300.0; 
+	# Seteo vida inicial por valor en Global
+	health = Global.player_max_hp; 
 	# Inicializo size 
 	char_size = int(Global.base_player_size); 
 	Global.update_player_size(Global.base_player_size); 
@@ -36,14 +39,22 @@ func _ready():
 
 func damage(s):
 	if vulnerable:
-		# Disminuyo feed_cont en s
-		feed_cont = feed_cont - s; 
-		# Hago sonido de damage
-		damage_sound_node.play(); 
-		# Uso update_feed_cont() para ver si hay que aumentar o reducir tamano
-		update_feed_cont(); 
-		# Uso blink_node para dar invulnerabilidad
-		blink_node.play("blink_on"); 
+		# Disminuyo health en 1
+		health -= 1; 
+		# Mando senal de cambio de health
+		health_changed.emit(health); 
+		# Veo que health no sea 0
+		if health > 0:
+			# Disminuyo feed_cont en s
+			feed_cont = feed_cont - s; 
+			# Hago sonido de damage
+			damage_sound_node.play(); 
+			# Uso update_feed_cont() para ver si hay que aumentar o reducir tamano
+			update_feed_cont(); 
+			# Uso blink_node para dar invulnerabilidad
+			blink_node.play("blink_on"); 
+		else:
+			death(); 
 
 
 func death():
