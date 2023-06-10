@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqfm162buudoo"]
+
+[ext_resource type="Script" path="res://UI/background.gd" id="1_ysrsy"]
+[ext_resource type="PackedScene" uid="uid://y8tbo5t0diq5" path="res://world/water.tscn" id="2_4vcod"]
+[ext_resource type="Texture2D" uid="uid://dr646td0yx4oh" path="res://world/Fondo_0.png" id="2_wefal"]
+[ext_resource type="Shader" path="res://world/terrain.gdshader" id="3_8j8jr"]
+[ext_resource type="Texture2D" uid="uid://yicnsepq2wv4" path="res://world/Fondo_1.png" id="3_jx5ck"]
+[ext_resource type="Texture2D" uid="uid://phltism80eqj" path="res://world/Fondo_2.png" id="4_huv2e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_71t5m"]
+resource_local_to_scene = true
+shader = ExtResource("3_8j8jr")
+shader_parameter/active = true
+shader_parameter/modul = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0jcg8"]
+resource_local_to_scene = true
+shader = ExtResource("3_8j8jr")
+shader_parameter/active = true
+shader_parameter/modul = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mq4u5"]
+resource_local_to_scene = true
+shader = ExtResource("3_8j8jr")
+shader_parameter/active = true
+shader_parameter/modul = 1.0
+
+[node name="Background" type="ParallaxBackground"]
+script = ExtResource("1_ysrsy")
+
+[node name="water" parent="." instance=ExtResource("2_4vcod")]
+
+[node name="terrain1" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1671, 1200)
+
+[node name="Sprite2D" type="Sprite2D" parent="terrain1"]
+material = SubResource("ShaderMaterial_71t5m")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_wefal")
+centered = false
+
+[node name="spritetop1" type="VisibleOnScreenNotifier2D" parent="terrain1/Sprite2D"]
+position = Vector2(2090, 80)
+scale = Vector2(209, 2.5)
+
+[node name="spritebot1" type="VisibleOnScreenNotifier2D" parent="terrain1/Sprite2D"]
+position = Vector2(2105, 1420)
+scale = Vector2(210.5, 2)
+
+[node name="terrain2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.375, 0.5)
+motion_mirroring = Vector2(1671, 1200)
+
+[node name="Sprite2D" type="Sprite2D" parent="terrain2"]
+material = SubResource("ShaderMaterial_0jcg8")
+position = Vector2(0, 368)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_jx5ck")
+centered = false
+
+[node name="spritetop2" type="VisibleOnScreenNotifier2D" parent="terrain2/Sprite2D"]
+position = Vector2(2080, 39.9999)
+scale = Vector2(209, 2.5)
+
+[node name="spritebot2" type="VisibleOnScreenNotifier2D" parent="terrain2/Sprite2D"]
+position = Vector2(2100, 1420)
+scale = Vector2(210, 2)
+
+[node name="terrain3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.25, 0.5)
+motion_mirroring = Vector2(1671, 1200)
+
+[node name="Sprite2D" type="Sprite2D" parent="terrain3"]
+material = SubResource("ShaderMaterial_mq4u5")
+position = Vector2(0, 720)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_huv2e")
+centered = false
+
+[node name="spritetop3" type="VisibleOnScreenNotifier2D" parent="terrain3/Sprite2D"]
+position = Vector2(2080, 120)
+scale = Vector2(209, 2.5)
+
+[node name="spritebot3" type="VisibleOnScreenNotifier2D" parent="terrain3/Sprite2D"]
+position = Vector2(2100, 1420)
+scale = Vector2(210, 2.00001)
+
+[connection signal="screen_entered" from="terrain1/Sprite2D/spritetop1" to="." method="_on_spritetop_1_screen_entered"]
+[connection signal="screen_entered" from="terrain1/Sprite2D/spritebot1" to="." method="_on_spritebot_1_screen_entered"]
+[connection signal="screen_entered" from="terrain2/Sprite2D/spritetop2" to="." method="_on_spritetop_2_screen_entered"]
+[connection signal="screen_entered" from="terrain2/Sprite2D/spritebot2" to="." method="_on_spritebot_2_screen_entered"]
+[connection signal="screen_entered" from="terrain3/Sprite2D/spritetop3" to="." method="_on_spritetop_3_screen_entered"]
+[connection signal="screen_entered" from="terrain3/Sprite2D/spritebot3" to="." method="_on_spritebot_3_screen_entered"]

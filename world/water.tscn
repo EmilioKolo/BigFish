@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://y8tbo5t0diq5"]
+
+[sub_resource type="Gradient" id="Gradient_ov1l4"]
+colors = PackedColorArray(0, 0, 0.156863, 1, 0, 0.470588, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4prtn"]
+gradient = SubResource("Gradient_ov1l4")
+
+[node name="water" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 4.71239
+scale = Vector2(-0.6, 1.8)
+texture = SubResource("GradientTexture1D_4prtn")
+flip_h = true

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxved54ow363q"]
+
+[ext_resource type="PackedScene" uid="uid://k14sen5i6v7r" path="res://characters/character.tscn" id="1_gttts"]
+[ext_resource type="Script" path="res://characters/fish_char.gd" id="2_uu6qq"]
+[ext_resource type="Shader" path="res://characters/outliner.gdshader" id="3_qf8ku"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ol10"]
+resource_local_to_scene = true
+shader = ExtResource("3_qf8ku")
+shader_parameter/line_color = Quaternion(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5cde"]
+resource_local_to_scene = true
+radius = 16.0
+height = 64.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jk4iv"]
+radius = 32.0
+height = 96.0
+
+[node name="fish_char" instance=ExtResource("1_gttts")]
+collision_layer = 6
+collision_mask = 1
+script = ExtResource("2_uu6qq")
+char_size = 4
+scale_mult = 0.2
+
+[node name="sprites" parent="." index="0"]
+material = SubResource("ShaderMaterial_4ol10")
+animation = &"pez3"
+flip_h = true
+
+[node name="collision" parent="." index="1"]
+position = Vector2(-16, 0)
+shape = SubResource("CapsuleShape2D_v5cde")
+
+[node name="player_collision" type="Area2D" parent="." index="4"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_collision" index="0"]
+position = Vector2(-16, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jk4iv")
+
+[connection signal="body_entered" from="player_collision" to="." method="_on_player_collision_body_entered"]

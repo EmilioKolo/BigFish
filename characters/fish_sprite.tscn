@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cixs1fpd0krjg"]
+
+[ext_resource type="Shader" path="res://characters/outliner.gdshader" id="1_7jmo4"]
+[ext_resource type="Texture2D" uid="uid://6nj51sawfm3s" path="res://characters/pez1_v0.png" id="1_qjqvc"]
+[ext_resource type="Script" path="res://characters/fish_sprite.gd" id="2_4an1b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0jl32"]
+resource_local_to_scene = true
+shader = ExtResource("1_7jmo4")
+shader_parameter/line_color = Quaternion(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1214y"]
+radius = 13.3333
+height = 53.3333
+
+[node name="fish_sprite" type="Sprite2D"]
+material = SubResource("ShaderMaterial_0jl32")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_qjqvc")
+flip_h = true
+script = ExtResource("2_4an1b")
+
+[node name="player_detect" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detect"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1214y")
+
+[connection signal="body_entered" from="player_detect" to="." method="_on_player_detect_body_entered"]

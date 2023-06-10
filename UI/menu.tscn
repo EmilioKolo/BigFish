@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkqippy6qllxs"]
+
+[ext_resource type="Script" path="res://UI/menu.gd" id="1_i0yp3"]
+[ext_resource type="Texture2D" uid="uid://dq3yl8rfwram" path="res://UI/Boton-Jugar.png" id="1_sok2h"]
+[ext_resource type="AudioStream" uid="uid://bm0tg7via8vbr" path="res://SFX/menu_music.wav" id="3_srsaf"]
+
+[sub_resource type="Gradient" id="Gradient_lcpgk"]
+offsets = PackedFloat32Array(0.0580645, 0.354839, 0.780645)
+colors = PackedColorArray(0.232775, 0.417132, 1, 1, 0, 0.752941, 1, 1, 1, 1, 0.427451, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0agwc"]
+gradient = SubResource("Gradient_lcpgk")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dinbo"]
+
+[sub_resource type="Theme" id="Theme_ocnxm"]
+Button/colors/icon_hover_color = Color(1, 1, 0.741176, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 0, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_dinbo")
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i0yp3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 800.0
+offset_right = 450.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = SubResource("GradientTexture1D_0agwc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Izquierda" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxCentro" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Jugar" type="Button" parent="HBoxContainer/VBoxCentro"]
+custom_minimum_size = Vector2(254, 124)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_ocnxm")
+icon = ExtResource("1_sok2h")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="VBoxDerecha" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxDerecha"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="Sonido" type="Button" parent="HBoxContainer/VBoxDerecha/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "SONIDO ON"
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxDerecha"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxDerecha"]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Creditos" type="Label" parent="HBoxContainer/VBoxDerecha/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Creado por: Bruno, Sol y Emilio
+Para La Plata Game Jam"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="bgmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_srsaf")
+volume_db = -18.0
+autoplay = true
+
+[connection signal="pressed" from="HBoxContainer/VBoxCentro/Jugar" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxDerecha/MarginContainer2/Sonido" to="." method="_on_sonido_pressed"]

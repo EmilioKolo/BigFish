@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmsdie6dav0af"]
+
+[ext_resource type="Texture2D" uid="uid://dr646td0yx4oh" path="res://world/Fondo_0.png" id="1_83110"]
+
+[node name="terrain" type="ParallaxLayer"]
+motion_mirroring = Vector2(1671, 400)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.63798e-12, 352)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_83110")
+centered = false

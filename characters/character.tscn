@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://k14sen5i6v7r"]
+
+[ext_resource type="Script" path="res://character.gd" id="1_6tnsh"]
+[ext_resource type="Texture2D" uid="uid://6nj51sawfm3s" path="res://characters/pez1_v0.png" id="2_5rkpu"]
+[ext_resource type="Texture2D" uid="uid://bfg6avwomr3k4" path="res://characters/pez2_v0.png" id="3_f74xj"]
+[ext_resource type="Texture2D" uid="uid://bgb0o5linr827" path="res://characters/pez3_v0.png" id="4_or5b3"]
+[ext_resource type="Texture2D" uid="uid://dj8m020vw86fu" path="res://characters/pez4_v0.png" id="5_if3fq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6hor"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5rkpu")
+}],
+"loop": true,
+"name": &"pez1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_f74xj")
+}],
+"loop": true,
+"name": &"pez2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_or5b3")
+}],
+"loop": true,
+"name": &"pez3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_if3fq")
+}],
+"loop": true,
+"name": &"pez4",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_clbqp"]
+resource_local_to_scene = true
+radius = 32.0
+height = 192.0
+
+[node name="character" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_6tnsh")
+
+[node name="sprites" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f6hor")
+animation = &"pez4"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(32, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_clbqp")
+
+[node name="animations" type="AnimationPlayer" parent="."]
+
+[node name="blinker" type="AnimationPlayer" parent="."]

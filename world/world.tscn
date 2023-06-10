@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3quef1nllb43"]
+
+[ext_resource type="Script" path="res://world/world.gd" id="1_ctpxb"]
+[ext_resource type="PackedScene" uid="uid://ddnlyejeteb1" path="res://UI/ui.tscn" id="1_s52hh"]
+[ext_resource type="PackedScene" uid="uid://p2ui6ga7ogdp" path="res://characters/player.tscn" id="3_npc1j"]
+[ext_resource type="Script" path="res://world/Limites.gd" id="5_8by2h"]
+[ext_resource type="AudioStream" uid="uid://bfr38gmoedmsg" path="res://SFX/bg_sound.wav" id="6_u7ijn"]
+[ext_resource type="AudioStream" uid="uid://w5q6hfrhbqs7" path="res://SFX/game_music.wav" id="7_bjtfa"]
+[ext_resource type="AudioStream" uid="uid://0nutlljdt666" path="res://SFX/victoria.wav" id="8_j2i36"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rtuj"]
+size = Vector2(800, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6o16"]
+size = Vector2(32, 456)
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_ctpxb")
+
+[node name="ui" parent="." instance=ExtResource("1_s52hh")]
+
+[node name="player" parent="." instance=ExtResource("3_npc1j")]
+position = Vector2(159, 257)
+collision_layer = 1
+vulnerable = true
+
+[node name="chars" type="Node2D" parent="."]
+
+[node name="Limites" type="Node2D" parent="."]
+script = ExtResource("5_8by2h")
+
+[node name="Techo" type="StaticBody2D" parent="Limites"]
+position = Vector2(400, 0)
+collision_layer = 16
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/Techo"]
+shape = SubResource("RectangleShape2D_6rtuj")
+metadata/_edit_lock_ = true
+
+[node name="Suelo" type="StaticBody2D" parent="Limites"]
+position = Vector2(400, 448)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/Suelo"]
+shape = SubResource("RectangleShape2D_6rtuj")
+metadata/_edit_lock_ = true
+
+[node name="Izquierda" type="StaticBody2D" parent="Limites"]
+position = Vector2(0, 224)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/Izquierda"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_x6o16")
+metadata/_edit_lock_ = true
+
+[node name="Derecha" type="StaticBody2D" parent="Limites"]
+position = Vector2(800, 224)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/Derecha"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_x6o16")
+metadata/_edit_lock_ = true
+
+[node name="fish_spawn" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(400, 225)
+position_smoothing_enabled = true
+
+[node name="bgmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_u7ijn")
+volume_db = -12.0
+autoplay = true
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_bjtfa")
+volume_db = -12.0
+autoplay = true
+
+[node name="win_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_j2i36")
+volume_db = -12.0
+pitch_scale = 2.0
+
+[connection signal="change_prof" from="ui" to="." method="_on_ui_change_prof"]
+[connection signal="exit_game" from="ui" to="." method="_on_ui_exit_game"]
+[connection signal="player_dead" from="player" to="." method="_on_player_player_dead"]
+[connection signal="size_change" from="player" to="." method="_on_player_size_change"]
+[connection signal="timeout" from="fish_spawn" to="." method="_on_fish_spawn_timeout"]

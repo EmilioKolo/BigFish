@@ -1,0 +1,22 @@
+
+X Revisar que limit_x y limit_y se usen bien en spawn
+
+X Arreglar indicador de tamaño (rojo muy grande, verde comestible)
+
+X Hacer andar blinker en player
+
+- Agregar fondo con parallax
+	- Aumenta transparencia al subir hasta desaparecer
+	- Desaparece al llegar hasta arriba
+
+~ Agregar escala al spawn
+
+- Revisar que los peces tengan tamaño razonable
+
+~ Revisar que speed escale con scale
+
+X Agregar sonidos
+
+- Agregar progresion de dificultad
+
+- Agregar mas peces
