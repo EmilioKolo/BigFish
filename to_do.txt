@@ -5,18 +5,21 @@ X Arreglar indicador de tamaño (rojo muy grande, verde comestible)
 
 X Hacer andar blinker en player
 
-- Agregar fondo con parallax
-	- Aumenta transparencia al subir hasta desaparecer
-	- Desaparece al llegar hasta arriba
+X Agregar fondo con parallax
+	X Aumenta transparencia al subir hasta desaparecer
+	X Desaparece al llegar hasta arriba
 
-~ Agregar escala al spawn
+- Agregar vida al pez
+	- Sistema de vida con señales y display de label
+	- Usar imagenes UI
 
-- Revisar que los peces tengan tamaño razonable
-
-~ Revisar que speed escale con scale
+- Pulir sistema de escala de peces
+	- Revisar que los peces tengan tamaño razonable
+	~ Mejorar sistema de escala en spawn
+		- Agregar progresion de dificultad
+	~ Revisar que speed escale bien con scale
 
 X Agregar sonidos
 
-- Agregar progresion de dificultad
-
 - Agregar mas peces
+
